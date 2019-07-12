@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+const db = require('./queries')
+const bodyParser = require('body-parser')
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
@@ -17,6 +19,12 @@ app.get('/', function(req, res) {
 	// ejs render automatically looks in the views folder
 	res.render('index');
 });
+
+
+app.get('/', db.getProd);
+app.get('/product/:id', db.getProdById)
+app.get('/product2/:id', db.getProdById2)
+
 
 app.listen(port, function() {
 	console.log('Our app is running on http://localhost:' + port);
