@@ -25,7 +25,7 @@ app.get('/', db.getProd);
 app.get('/product3/:id', db.getProdById3);
 app.get('/product2/:id', db.getProdById2);
 app.get('/product4/', db.getProdById4);
-app.post('/product/:id', db.insert);
+app.post('/product/', db.insertBusket);
 
 
 app.listen(port, function() {
