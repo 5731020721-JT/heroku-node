@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
 
 
 app.get('/', db.getProd);
-app.get('/product/:id', db.getProdById)
+app.get('/product3/:id', db.getProdById3)
 app.get('/product2/:id', db.getProdById2)
 
 
