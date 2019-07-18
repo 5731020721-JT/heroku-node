@@ -65,7 +65,7 @@ const getProd = (request, response) => {
     const price = request.body.price
     const productname = request.body.productname
     
-    pool.query('SELECT * FROM public_b1.busket WHERE item_id = $1 and userid = $2;', [item_code],[userid], (error, results1) => {
+    pool.query('SELECT * FROM public_b1.busket WHERE item_code = $1 and user_id = $2;', [item_code],[userid], (error, results1) => {
       if (error) {
         throw error
       }
@@ -76,7 +76,7 @@ const getProd = (request, response) => {
 //     }
     else{
       
-      pool.query('INSERT INTO public_b1.busket (item_code,userid,price,productname,number) VALUES ($1, $2, $3, $4, 1)', [item_code, userid,price,productname], (error, results3) => {
+      pool.query('INSERT INTO public_b1.busket (item_code,user_id,price,item_name,number) VALUES ($1, $2, $3, $4, 1)', [item_code, userid,price,productname], (error, results3) => {
     if (error) {
       throw error
     }
