@@ -67,6 +67,7 @@ const getProd = (request, response) => {
     
     pool.query('SELECT * FROM public_b1.busket WHERE item_code = $1 and user_id = $2;', [item_code],[userid], (error, results1) => {
       if (error) {
+        response.status(500).send('here')
         throw error
       }
 //       if(results1 != null){
