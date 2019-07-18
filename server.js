@@ -24,6 +24,7 @@ app.get('/', function(req, res) {
 app.get('/', db.getProd);
 app.get('/product3/:id', db.getProdById3)
 app.get('/product2/:id', db.getProdById2)
+app.get('/product4/:id', db.getProdById4)
 
 
 app.listen(port, function() {
