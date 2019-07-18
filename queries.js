@@ -77,7 +77,7 @@ const getProd = (request, response) => {
 //     }
 //     else{
       
-      pool.query('INSERT INTO public_b1.busket (item_code,user_id,price,item_name,number) VALUES ($1, $2, $3, $4, 1)', [item_code, userid,price,productname], (error, results3) => {
+      pool.query('INSERT INTO public_b1.buskets (item_code,user_id,price,item_name,number) VALUES ($1, $2, $3, $4, 1)', [item_code, userid,price,productname], (error, results3) => {
     if (error) {
       throw error
     }
