@@ -65,18 +65,18 @@ const getProd = (request, response) => {
     const price = request.body.price
     const productname = request.body.productname
     
-// //     pool.query('SELECT * FROM public_b1.busket WHERE item_code = $1 and user_id = $2;', [item_code,userid], (error, results1) => {
-// //       if (error) {
-        
-// //         throw error
-// //       }
-//       if(results1 != null){
-//         var number = results1.rows.number
-//         number = number+1
-//         pool.query('UPDATE public_b1.busket SET number = $1 WHERE item_id = $1 and userid = $2;', [number], (error, results2) => {})
-//     }
-//     else{
-      
+    pool.query('SELECT * FROM public_b1.buskets WHERE item_code = $1 and user_id = $2;', [item_code,userid], (error, results1) => {
+      if (error) {
+        throw error
+      }
+      //response.send(results1.rows[0])
+      if(results1.rows.length > 0){
+        var number = results1.rows[0].number
+        number =  parseInt(number) + 1
+        pool.query('UPDATE public_b1.buskets SET number = $1 WHERE item_code = $2 and user_id = $3;', [number,item_code,userid], (error, results2) => {})
+        response.status(200).send('update')
+      }
+    else{
       pool.query('INSERT INTO public_b1.buskets (item_code,user_id,price,item_name,number) VALUES ($1, $2, $3, $4, 1)', [item_code, userid,price,productname], (error, results3) => {
     if (error) {
       throw error
@@ -84,9 +84,10 @@ const getProd = (request, response) => {
       response.status(200).send('Added')
     }
     })
-   // }
-   // })
+   }
+   })
   }
+
  
 
 
