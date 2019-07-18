@@ -89,5 +89,6 @@ const getProd = (request, response) => {
     getProd,
     getProdById3,
     getProdById4,
-    getProdById2
+    getProdById2,
+    insertBusket 
   }
