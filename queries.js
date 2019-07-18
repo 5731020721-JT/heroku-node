@@ -32,6 +32,19 @@ const getProd = (request, response) => {
       response.status(200).json(results.rows)
     })
   }
+  
+  
+  const getProdById4 = (request, response) => {
+    const id = request.params.id
+    pool.query('SELECT * FROM public_b1.retail_comp WHERE timestamp IN (SELECT max(timestamp) FROM public_b1.retail_comp) ORDER BY price ASC limit 1;', [id], (error, results) => {
+    //pool.query('SELECT * FROM public_b1.retail_comp WHERE item_id = $1;', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+  
 
   const getProdById2 = (request, response) => {
     const id = request.params.id
@@ -75,5 +88,6 @@ const getProd = (request, response) => {
   module.exports = {
     getProd,
     getProdById3,
+    getProdById4,
     getProdById2
   }
