@@ -69,17 +69,22 @@ const getProd = (request, response) => {
       if (error) {
         throw error
       }
-      if(results1 != null){
-        var number = results1.rows.number
-        number = number+1
-        pool.query('UPDATE public_b1.busket SET number = $1 WHERE item_id = $1 and userid = $2;', [number], (error, results2) => {})
-    }
+//       if(results1 != null){
+//         var number = results1.rows.number
+//         number = number+1
+//         pool.query('UPDATE public_b1.busket SET number = $1 WHERE item_id = $1 and userid = $2;', [number], (error, results2) => {})
+//     }
     else{
-      pool.query('INSERT INTO public_b1.busket(item_code,userid,price,productname,number) VALUES ($1, $2,$3,$4,1);', [item_code],[userid],[price],[productname], (error, results3) => {})
+      pool.query('INSERT INTO public_b1.busket(item_code,userid,price,productname,number) VALUES ($1, $2,$3,$4,1);', [item_code],[userid],[price],[productname], (error, results3) => {
+      if (error) {
+        throw error
+      }
+        response.status(200).send('inserted')
+      })
     }
-      response.status(200).json(results3)
     })
   }
+ 
 
 
 
