@@ -39,7 +39,7 @@ const getProd = (request, response) => {
     pool.query('SELECT * FROM public_b1.retail_comp WHERE timestamp IN (SELECT max(timestamp) FROM public_b1.retail_comp);',(error, results) => {
     //pool.query('SELECT * FROM public_b1.retail_comp WHERE item_id = $1;', [id], (error, results) => {
       if (error) {
-        throw error
+       throw error
       }
       response.status(200).json(results.rows)
     })
@@ -59,7 +59,7 @@ const getProd = (request, response) => {
 
 
   // insert buskets
-  const insertBusket = (request, response) => {
+ const insertBusket = (request, response) => {
     const item_code = request.body.item_code
     const userid = request.body.userid
     const price = request.body.price
@@ -80,8 +80,9 @@ const getProd = (request, response) => {
       pool.query('INSERT INTO public_b1.buskets (item_code,user_id,price,item_name,number) VALUES ($1, $2, $3, $4, 1)', [item_code, userid,price,productname], (error, results3) => {
     if (error) {
       throw error
+    }else{
+      response.status(200).send('Added')
     }
-    response.status(200).send('Added')
     })
    // }
    // })
@@ -97,5 +98,5 @@ const getProd = (request, response) => {
     getProdById3,
     getProdById4,
     getProdById2,
-    insertBusket 
+    insertBusket
   }
