@@ -1,7 +1,5 @@
 var express = require('express');
 var app = express();
-var cors = require('cors'); 
-app.use(cors())
 const db = require('./queries')
 const bodyParser = require('body-parser')
 
@@ -16,6 +14,12 @@ app.set('view engine', 'ejs');
 
 // make express look in the public directory for assets (css/js/img)
 app.use(express.static(__dirname + '/public'));
+
+// var cors = require('cors'); 
+// app.use(cors())
+app.use(cors({origin: [
+  "http://localhost:4200"
+], credentials: true}));
 
 // set the home page route
 app.get('/', function(req, res) {
