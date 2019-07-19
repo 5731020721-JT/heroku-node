@@ -1,3 +1,11 @@
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+});
+
 var express = require('express');
 var app = express();
 const db = require('./queries')
@@ -10,8 +18,6 @@ var port = process.env.PORT || 8080;
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
-app.use(allowCrossDomain);
-
 // make express look in the public directory for assets (css/js/img)
 app.use(express.static(__dirname + '/public'));
 
@@ -20,14 +26,6 @@ app.get('/', function(req, res) {
 
 	// ejs render automatically looks in the views folder
 	res.render('index');
-});
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
-    res.header("Access-Control-Allow-Credentials", true);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-    next();
 });
 
 
