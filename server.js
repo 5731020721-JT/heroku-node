@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var cors = require('cors'); 
+//var cors = require('cors'); 
 const db = require('./queries')
 const bodyParser = require('body-parser')
 
@@ -18,9 +18,9 @@ app.use(express.static(__dirname + '/public'));
 
 // app.use(cors())
 
-// app.use(cors({origin: [
-//   "http://localhost:4200"
-// ], credentials: true}));
+app.use(cors({origin: [
+  "http://localhost:4200"
+], credentials: true}));
 
 // set the home page route
 app.get('/', function(req, res) {
