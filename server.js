@@ -4,11 +4,11 @@ var express = require('express');
 var app = express();
 const db = require('./queries')
 const bodyParser = require('body-parser')
+var cors = require('cors'); 
 
 // set the port of our application
 // process.env.PORT lets the port be set by Heroku
 var port = process.env.PORT || 8080;
-
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", '*');
@@ -17,6 +17,8 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
     next();
 });
+
+app.use(cors());
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
