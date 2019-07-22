@@ -22,6 +22,20 @@ const getProd = (request, response) => {
   }
 
 
+
+
+  //get offer
+  const getOfferbyId = (request, response) => {
+    const id = request.params.id
+    pool.query('SELECT item_code , new_name , item_pic FROM public_b1.item_offer WHERE item_code IN (SELECT pred_item1 FROM public_b1.item_offer WHERE item_code = $1) OR item_code IN (SELECT pred_item2 FROM public_b1.item_offer WHERE item_code = $1) ;', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+
+
   const getProdById3 = (request, response) => {
     const id = request.params.id
     pool.query('SELECT * FROM public_b1.retail_comp WHERE item_id = $1 and timestamp IN (SELECT max(timestamp) FROM public_b1.retail_comp) ORDER BY price ASC limit 1;', [id], (error, results) => {
@@ -99,5 +113,6 @@ const getProd = (request, response) => {
     getProdById3,
     getProdById4,
     getProdById2,
-    insertBusket
+    insertBusket,
+    getOfferbyId
   }
