@@ -70,6 +70,20 @@ const getProd = (request, response) => {
       response.status(200).json(results.rows)
     })
   }
+  
+  
+  
+   const getBuskets = (request, response) => {
+    const id = request.params.id
+    pool.query('SELECT * FROM public_b1.buskets WHERE user_id = $1;', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
+   
+   
 
 
   // insert buskets
@@ -114,5 +128,6 @@ const getProd = (request, response) => {
     getProdById4,
     getProdById2,
     insertBusket,
-    getOfferbyId
+    getOfferbyId,
+    getBuskets
   }
