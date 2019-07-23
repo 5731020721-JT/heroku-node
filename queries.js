@@ -105,10 +105,12 @@ const getProd = (request, response) => {
       if(results1.rows.length > 0){
         var number = results1.rows[0].number
         number =  parseInt(number) + 1
+        console.log(dateTime);
         pool.query('UPDATE public_b1.buskets SET number = $1 , update_time = $4 WHERE item_code = $2 and user_id = $3;', [number,item_code,userid,dateTime], (error, results2) => {})
         response.status(200).send('update')
       }
     else{
+      console.log(dateTime);
       pool.query('INSERT INTO public_b1.buskets (item_code,user_id,price,item_name,number,update_time) VALUES ($1, $2, $3, $4, 1, $5)', [item_code, userid,price,productname,dateTime], (error, results3) => {
     if (error) {
       throw error
