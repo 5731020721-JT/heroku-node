@@ -43,6 +43,7 @@ app.get('/product4/', db.getProdById4);
 app.get('/product/:id', db.getProdById3);
 app.get('/getoffer/:id', db.getOfferbyId);
 app.get('/getbasket/:id', db.getBuskets);
+app.post('/insertbasket/:id', db.insertBusket);
 
 
 app.listen(port, function() {
