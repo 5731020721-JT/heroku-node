@@ -21,6 +21,15 @@ const getProd = (request, response) => {
     })
   }
 
+//get picture
+const getPic = (request, response) => {
+    pool.query('SELECT item_code , new_name , item_pic FROM public_b1.item_offer;', (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).json(results.rows)
+    })
+  }
 
 
 
@@ -135,5 +144,6 @@ const getProd = (request, response) => {
     getProdById2,
     insertBusket,
     getOfferbyId,
-    getBuskets
+    getBuskets,
+    getPic
   }
