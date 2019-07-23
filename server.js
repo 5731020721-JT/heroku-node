@@ -44,6 +44,7 @@ app.get('/product/:id', db.getProdById3);
 app.get('/getoffer/:id', db.getOfferbyId);
 app.get('/getbasket/:id', db.getBuskets);
 app.post('/insertbasket/', db.insertBusket);
+app.get('/getpicture', db.getPic);
 
 
 app.listen(port, function() {
