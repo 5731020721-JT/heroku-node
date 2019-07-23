@@ -16,11 +16,11 @@ app.set('view engine', 'ejs');
 // make express look in the public directory for assets (css/js/img)
 app.use(express.static(__dirname + '/public'));
 
-// app.use(cors())
+app.use(cors())
 
-// app.use(cors({origin: [
-//   "http://localhost:4200"
-// ], credentials: true}));
+app.use(cors({origin: [
+  "http://localhost:4200"
+], credentials: true}));
 
 // app.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
