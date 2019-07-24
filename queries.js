@@ -93,6 +93,38 @@ const getPic = (request, response) => {
   }
    
    
+   
+   //register
+   const register = (req, res, next) => {
+    var firstname = req.body.fname;
+    var lastname = req.body.lname;
+    var image = req.body.bloblink;
+    var churn = req.body.churn;
+    var userid = "user1";
+
+    
+            pool.query(query,[firstname,lastname,image,churn],(err,result) => {
+                if(err){
+                    console.log(err);
+                }else{
+
+                     client.query('SELECT COUNT(*) as userid FROM userlogin',(err,result) => {
+                      if(err){
+                        console.log(err);
+                      }else{
+                         res.status(200).send(result.rows[0]);
+                         }
+                     })
+                   
+                }
+            })
+         
+       
+    }
+   
+   
+   
+   
 
 
   // insert buskets
@@ -145,5 +177,6 @@ const getPic = (request, response) => {
     insertBusket,
     getOfferbyId,
     getBuskets,
-    getPic
+    getPic,
+    register
   }
