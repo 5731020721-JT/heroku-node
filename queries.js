@@ -94,8 +94,9 @@ const getPic = (request, response) => {
    
    
    
-   //register
-   const register = (req, res, next) => {
+  //register
+  const register = (req, res, next) => {
+    const query = `INSERT INTO userlogin (firstname , lastname , image ,churn) VALUES ($1,$2,$3,$4)`;
     var firstname = req.body.fname;
     var lastname = req.body.lname;
     var image = req.body.bloblink;
@@ -108,7 +109,7 @@ const getPic = (request, response) => {
                     console.log(err);
                 }else{
 
-                     client.query('SELECT COUNT(*) as userid FROM userlogin',(err,result) => {
+                     pool.query('SELECT COUNT(*) as userid FROM userlogin',(err,result) => {
                       if(err){
                         console.log(err);
                       }else{
