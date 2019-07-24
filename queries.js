@@ -178,6 +178,6 @@ const getPic = (request, response) => {
     insertBusket,
     getOfferbyId,
     getBuskets,
-    getPic,
-    register
+    getPic//,
+   // register
   }
