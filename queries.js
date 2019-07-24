@@ -94,34 +94,34 @@ const getPic = (request, response) => {
    
    
    
-  register
-  const register = (req, res, next) => {
-    const query = `INSERT INTO userlogin (firstname , lastname , image ,churn) VALUES ($1,$2,$3,$4)`;
-    var firstname = req.body.fname;
-    var lastname = req.body.lname;
-    var image = req.body.bloblink;
-    var churn = req.body.churn;
-    var userid = "user1";
+//   register
+//   const register = (req, res, next) => {
+//     const query = `INSERT INTO userlogin (firstname , lastname , image ,churn) VALUES ($1,$2,$3,$4)`;
+//     var firstname = req.body.fname;
+//     var lastname = req.body.lname;
+//     var image = req.body.bloblink;
+//     var churn = req.body.churn;
+//     var userid = "user1";
 
     
-            pool.query(query,[firstname,lastname,image,churn],(err,result) => {
-                if(err){
-                    console.log(err);
-                }else{
+//             pool.query(query,[firstname,lastname,image,churn],(err,result) => {
+//                 if(err){
+//                     console.log(err);
+//                 }else{
 
-                     pool.query('SELECT COUNT(*) as userid FROM userlogin',(err,result) => {
-                      if(err){
-                        console.log(err);
-                      }else{
-                         res.status(200).send(result.rows[0]);
-                         }
-                     })
+//                      pool.query('SELECT COUNT(*) as userid FROM userlogin',(err,result) => {
+//                       if(err){
+//                         console.log(err);
+//                       }else{
+//                          res.status(200).send(result.rows[0]);
+//                          }
+//                      })
                    
-                }
-            })
+//                 }
+//             })
          
        
-    }
+//     }
    
    
    
@@ -178,6 +178,5 @@ const getPic = (request, response) => {
     insertBusket,
     getOfferbyId,
     getBuskets,
-    getPic,
-    register
+    getPic
   }
