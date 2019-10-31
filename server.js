@@ -37,7 +37,7 @@ app.get('/', function(req, res) {
 
 
 app.get('/', db.getProd);
-app.get('/product/:id', db.getProdById3);
+//app.get('/product/:id', db.getProd);
 
 
 
