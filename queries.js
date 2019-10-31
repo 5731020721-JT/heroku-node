@@ -29,5 +29,5 @@ const getProd = (request, response) => {
 }
 
   module.exports = {
-    getProd,
+    getProd
   }
