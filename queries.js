@@ -12,14 +12,19 @@ const pool = new Pool({
 })
 
 
-const getProd = (request, response) => {
-    pool.query('SELECT * FROM  public_b1.retail_comp;', (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).json(results.rows)
-    })
-  }
+//QRCODE
+const getProdById3 = (request, response) => {
+  const id = request.params.id
+  //pool.query('SELECT * FROM public_b1.retail_comp WHERE item_id = $1 and timestamp IN (SELECT max(timestamp) FROM public_b1.retail_comp) ORDER BY price ASC limit 1;', [id], (error, results) => {
+  
+  pool.query('SELECT * FROM public_b1.retail_comp AS RC INNER JOIN (SELECT itemcode,upsale FROM  public_b1.item_margin WHERE day=' + day + 'and month=' + month + '  ) DT ON DT.ItemCode=RC.item_id  WHERE item_id = $1 and timestamp IN (SELECT max(timestamp) FROM public_b1.retail_comp) ORDER BY price ASC limit 1;', [id], (error, results) => {
+    //pool.query('SELECT * FROM public_b1.retail_comp WHERE item_id = $1;', [id], (error, results) => {
+    if (error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
 
 //get picture
 const getPic = (request, response) => {
@@ -45,7 +50,7 @@ const getPic = (request, response) => {
   }
 
 
-  const getProdById3 = (request, response) => {
+  const getProdById0 = (request, response) => {
     const id = request.params.id
     pool.query('SELECT * FROM public_b1.retail_comp WHERE item_id = $1 and timestamp IN (SELECT max(timestamp) FROM public_b1.retail_comp where item_id = $1) ORDER BY price ASC limit 1;', [id], (error, results) => {
 //pool.query('SELECT * FROM public_b1.retail_comp WHERE item_id = $1 and timestamp IN (SELECT max(timestamp) FROM public_b1.retail_comp) ORDER BY price ASC;', [id], (error, results) => {
