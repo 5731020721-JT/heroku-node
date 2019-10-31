@@ -37,15 +37,8 @@ app.get('/', function(req, res) {
 
 
 app.get('/', db.getProd);
-app.get('/product3/:id', db.getProdById3);
-app.get('/product2/:id', db.getProdById2);
-app.get('/product4/', db.getProdById4);
 app.get('/product/:id', db.getProdById3);
-app.get('/getoffer/:id', db.getOfferbyId);
-app.get('/getbasket/:id', db.getBuskets);
-app.post('/insertbasket/', db.insertBusket);
-app.get('/getpicture/', db.getPic);
-//app.post('/register/',db.register);
+
 
 
 app.listen(port, function() {
